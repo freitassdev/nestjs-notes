@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { UserContract } from "../contracts/user.contract";
-import { UserEntity } from "../entities/user.entity";
+import { UserContract } from "../../contracts/user.contract";
+import { UserEntity } from "../../entities/user.entity";
 import { hash } from "bcrypt";
 
 interface CreateUserRequest {
