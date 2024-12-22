@@ -47,6 +47,6 @@ describe('ValidateUserUseCase', () => {
                 email: "wrongmail@wrongmail.com",
                 password: userOriginalPassword
             })
-        })
+        }).rejects.toThrow(UnauthorizedException)
     })
 })
