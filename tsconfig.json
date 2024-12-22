@@ -18,7 +18,11 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@user/*": ["src/modules/user/*"],
+      "@auth/*": ["src/modules/auth/*"],
+      "@infra/*": ["src/infra/*"],
+      "~/*": ["*"]
     },
   },
   "exclude": ["node_modules"]

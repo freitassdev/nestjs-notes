@@ -14,4 +14,18 @@ export class UserRepository implements UserContract {
             data: userRaw
         })
     }
+
+    async findByEmail(email: string): Promise<UserEntity | null> {
+        const user = await this.prisma.user.findUnique({
+            where: {
+                email
+            }
+        });
+
+        if (!user) {
+            return null;
+        }
+
+        return UserMapper.toEntity(user);
+    }
 }

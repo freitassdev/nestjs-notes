@@ -4,4 +4,5 @@ import { UserEntity } from '../entities/user.entity';
 @Injectable()
 export abstract class UserContract {
     abstract create(user: UserEntity): Promise<void>;
+    abstract findByEmail(email: string): Promise<UserEntity | null>;
 }

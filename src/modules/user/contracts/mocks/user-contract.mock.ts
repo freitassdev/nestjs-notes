@@ -6,4 +6,7 @@ export class UserContractMock implements UserContract {
     async create(user: UserEntity): Promise<void> {
         this.users.push(user)
     }
+    async findByEmail(email: string): Promise<UserEntity | null> {
+        return this.users.find(user => user.email === email) || null
+    }
 }
