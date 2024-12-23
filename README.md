@@ -24,7 +24,8 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is my first nestjs project, a notes backend created with Nestjs and Prisma.
+Supports authentication with JWT and Passport.js.
 
 ## Project setup
 
