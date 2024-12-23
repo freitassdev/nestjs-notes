@@ -1,6 +1,7 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { UserContract } from "@user/contracts/user.contract";
 import { compare } from "bcrypt";
+import { AuthValueIncorrectException } from "../../exceptions/authValueIncorrect.exception";
 
 interface ValidateUserRequest {
     email: string;
@@ -21,6 +22,6 @@ export class ValidateUserUseCase {
             }
         }
 
-        throw new UnauthorizedException('Email ou senha incorretos.');
+        throw new AuthValueIncorrectException();
     }   
 }

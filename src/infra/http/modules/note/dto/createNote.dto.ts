@@ -1,11 +1,12 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
-
+import { IsNotEmptyCustom } from "@/infra/http/classValidator/decorators/isNotEmptyCustom";
+import { IsOptional } from "class-validator";
+import { IsStringCustom } from "@/infra/http/classValidator/decorators/isStringCustom";
 export class CreateNoteDTO {
-    @IsNotEmpty()
-    @IsString()
+    @IsNotEmptyCustom()
+    @IsStringCustom()
     title: string;
 
-    @IsString()
+    @IsStringCustom()
     @IsOptional()
     description?: string;
 }

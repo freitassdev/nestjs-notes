@@ -1,8 +1,9 @@
 import { GetNoteUseCase } from "./getNote.useCase";
 import { NoteContractMock } from "../../contracts/mocks/note-contract.mock";
 import { makeUser } from "@/modules/user/factories/user.factory";
-import { makeNote } from "../../factories/note.factory";
-import { NotFoundException, UnauthorizedException } from "@nestjs/common";
+import { makeNote } from "../../factories/note.factory"; 
+import { NoteWithoutPermissionException } from "../../exceptions/noteWithoutPermission.exception";
+import { NotFoundNoteException } from "../../exceptions/notFoundNote.exception";
 
 let noteContractMock: NoteContractMock;
 let getNoteUseCase: GetNoteUseCase;
@@ -42,7 +43,7 @@ describe('Get Note', () => {
                 noteId: 'otherId',
                 userId: user.id
             });
-        }).rejects.toThrow(NotFoundException);
+        }).rejects.toThrow(NotFoundNoteException);
     })
 
     it('Should not get a note if user is not the owner', async () => {
@@ -57,6 +58,6 @@ describe('Get Note', () => {
                 noteId: note.id,
                 userId: user.id
             });
-        }).rejects.toThrow(UnauthorizedException);
+        }).rejects.toThrow(NoteWithoutPermissionException);
     })
 });

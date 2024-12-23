@@ -2,7 +2,8 @@ import { EditNoteUseCase } from "./editNote.useCase";
 import { NoteContractMock } from "../../contracts/mocks/note-contract.mock";
 import { makeUser } from "@/modules/user/factories/user.factory";
 import { makeNote } from "../../factories/note.factory";
-import { NotFoundException, UnauthorizedException } from "@nestjs/common";
+import { NoteWithoutPermissionException } from "../../exceptions/noteWithoutPermission.exception";
+import { NotFoundNoteException } from "../../exceptions/notFoundNote.exception";
 
 let noteContractMock: NoteContractMock;
 let editNoteUseCase: EditNoteUseCase;
@@ -46,7 +47,7 @@ describe('Edit Note', () => {
                 title: 'new title',
                 description: 'new description'
             });
-        }).rejects.toThrow(NotFoundException);
+        }).rejects.toThrow(NotFoundNoteException);
     })
 
     it('Should not edit a note if user is not the owner', async () => {
@@ -63,6 +64,6 @@ describe('Edit Note', () => {
                 title: 'new title',
                 description: 'new description'
             });
-        }).rejects.toThrow(UnauthorizedException);
+        }).rejects.toThrow(NoteWithoutPermissionException);
     })
 });

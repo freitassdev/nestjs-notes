@@ -2,7 +2,8 @@ import { DeleteNoteUseCase } from "./deleteNote.useCase";
 import { NoteContractMock } from "../../contracts/mocks/note-contract.mock";
 import { makeUser } from "@/modules/user/factories/user.factory";
 import { makeNote } from "../../factories/note.factory";
-import { NotFoundException, UnauthorizedException } from "@nestjs/common";
+import { NotFoundNoteException } from "../../exceptions/notFoundNote.exception";
+import { NoteWithoutPermissionException } from "../../exceptions/noteWithoutPermission.exception";
 
 let noteContractMock: NoteContractMock;
 let deleteNoteUseCase: DeleteNoteUseCase;
@@ -38,7 +39,7 @@ describe('Delete Note', () => {
                 noteId: '123',
                 userId: user.id
             });
-        }).rejects.toThrow(NotFoundException);
+        }).rejects.toThrow(NotFoundNoteException);
     })
 
     it('Should not delete a note if user is not the owner', async () => {
@@ -53,6 +54,6 @@ describe('Delete Note', () => {
                 noteId: note.id,
                 userId: user.id
             });
-        }).rejects.toThrow(UnauthorizedException);
+        }).rejects.toThrow(NoteWithoutPermissionException);
     })
 });

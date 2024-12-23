@@ -1,17 +1,20 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { IsNotEmptyCustom } from '@/infra/http/classValidator/decorators/isNotEmptyCustom';
+import { IsEmailCustom } from '@/infra/http/classValidator/decorators/isEmailCustom';
+import { IsStringCustom } from '@/infra/http/classValidator/decorators/isStringCustom';
+import { MinLengthCustom } from '@/infra/http/classValidator/decorators/minLengthCustom';
 
 export class CreateUserDTO {
-  @IsString()
-  @IsEmail()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsEmailCustom()
+  @IsNotEmptyCustom()
   email: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsStringCustom()
+  @IsNotEmptyCustom()
   name: string;
 
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(6)
+  @IsStringCustom()
+  @IsNotEmptyCustom()
+  @MinLengthCustom(6)
   password: string;
 }
